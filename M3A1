@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+    char char1[100];
+    int i,j,k,l,m,n,low,high,temp, nums[20];
+
+    printf("Enter any words to be reverse : ");
+    fgets(char1, sizeof(char1), stdin);
+
+    //finding space
+    for (i = 0, j = 0; i < strlen(char1); i++) {
+
+        if(char1[i] == 32) {
+        j++;
+        nums[j] = i;
+        }
+    }
+
+    //reversing highest space number to lowest
+    for(low = 0, high = j; low < high; low++, high--) {
+        temp = nums[low];
+        nums[low] = nums[high];
+        nums[high] = temp;
+    }
+
+
+    printf("\nReversed word order : ");
+
+    //prints reverse words
+    m = strlen(char1) - 1;
+    for ( l = 0; l < j; l++) {
+        for(k = nums[l]; k < m; k++) {
+            printf("%c", char1[k]);
+        }
+        m = nums[l];
+    }
+
+    //prints space for the last word
+    printf(" ");
+    //prints the first word and will be the last
+    for (n = 0; n < m; n++) {
+        printf("%c", char1[n]);
+    }
+
+    printf("\n\n");
+    return 0;
+}
